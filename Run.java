@@ -2,29 +2,50 @@ import java.io.*;
 import java.util.Arrays;
 
 public class Run {
-    public static void print(Object message) {
-        System.out.print(message);
+
+    public static void print(Canvas canvas, Object message) {
+        String[] a = Arrays.deepToString(canvas.getAllCells()).split(",", 0);
+        int i = 0;
+        for (String list : a) {
+            System.out.print(list);
+            i = (i + 1) % canvas.width;
+            if (i == 0) {
+                System.out.print("\n");
+            }
+        }
+        System.out.println("\n");
     }
 
-    public static void println(Object message) {
-        System.out.println(message);
+    public static void update(Canvas canvas) {
+        Cell[][] cells = canvas.getAllCells();
+        for (int x = 0; x < canvas.width; x++) {
+            for (int y = 0; y < canvas.height; y++) {
+
+                if (cells[y][x] != null) {
+
+                    cells[y][x].updateGroup(canvas);
+                    cells[y][x].replicate(canvas);
+                }
+            }
+        }
+        canvas.updateCells();
+        print(canvas, cells);
     }
 
     public static void main(String[] args) {
-        Canvas canvas = new Canvas(3, 3);
-        Integer[] testpos = { 1, 1 };
+        Canvas canvas = new Canvas(9, 9);
+        Integer[] testpos = { 4, 4 };
         Cell Brian = new Cell(testpos, 100, 100);
         canvas.addCell(Brian);
-        Brian.replicate(canvas);
-        String[] a = Arrays.deepToString(canvas.getAllCells()).split(",", 0);
-        int x = 0;
-        for (String list : a) {
-            print(list);
-            x = (x + 1) % 3;
-            if (x == 0) {
-                print("\n");
-            }
-        }
-        // print();
+
+        print(canvas, canvas.getAllCells());
+
+        update(canvas);
+        update(canvas);
+        update(canvas);
+        update(canvas);
+
+        // update(canvas);
+
     }
 }
