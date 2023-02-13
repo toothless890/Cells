@@ -8,4 +8,11 @@ public class MatrixOperations {
         return sum;
     }
 
+    public static Boolean checkBounds(Integer[] pos, Canvas canvas) {
+        if (pos[0] >= canvas.height || pos[0] < 0 || pos[1] >= canvas.width || pos[1] < 0) {
+            return false;
+        }
+        return true;
+    }
+
 }
