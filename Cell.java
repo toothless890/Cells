@@ -66,7 +66,7 @@ public class Cell {
         for (int m = 0; m < 4; m++) {
             for (int r = 0; r < 3; r++) {
                 for (int i = 0; i < 3; i++) {
-                    if (Constants.testMatrixes[m][r][i] == 1) {
+                    if (Constants.testMatrixes[m][r][i]) {
                         if (group[r][i] == null) {
                             workingMatrixes[m]++;
 
@@ -78,7 +78,7 @@ public class Cell {
                 }
             }
         }
-
+        System.out.println(divisions);
         return divisions;
     }
 
@@ -136,46 +136,6 @@ public class Cell {
                 } else {
                     // Move cell to new position
                     canvas.planCell(this, newPos);
-                }
-            }
-        } else {
-            // Split cell into two cells
-            int[] newPos1 = null;
-            int[] newPos2 = null;
-            int[] testPos = new int[] { 0, 0 };
-            int freeSpots = 0;
-            for (int dx = -1; dx <= 1; dx++) {
-                for (int dy = -1; dy <= 1; dy++) {
-                    if (dx != 0 || dy != 0) {
-                        testPos[0] = this.position[0] + dx;
-                        testPos[1] = this.position[1] + dy;
-                        if (MatrixOperations.checkBounds(testPos, canvas) && canvas.getCell(testPos) == null) {
-                            freeSpots++;
-                            if (newPos1 == null) {
-                                newPos1 = testPos;
-                            } else if (newPos2 == null) {
-                                newPos2 = testPos;
-                            }
-                        }
-                    }
-                }
-            }
-            if (freeSpots == 0) {
-                // Cell cannot move or split
-                return;
-            } else if (freeSpots == 1) {
-                // Move cell to the only available spot
-                canvas.planCell(this, newPos1);
-            } else {
-                // Randomly choose which spot to move to
-                if (Math.random() < 0.5) {
-                    canvas.planCell(this, newPos1);
-                    Cell newCell = new Cell(newPos2, this.health / 2, this.species);
-                    canvas.planCell(newCell);
-                } else {
-                    canvas.planCell(this, newPos2);
-                    Cell newCell = new Cell(newPos1, this.health / 2, this.species);
-                    canvas.planCell(newCell);
                 }
             }
         }
