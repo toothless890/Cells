@@ -1,24 +1,24 @@
 public class Constants {
-        public static final int[][][] testMatrixes = {
+        public static final boolean[][][] testMatrixes = {
                         {
-                                        { 0, 0, 0 },
-                                        { 1, 0, 1 }, // -
-                                        { 0, 0, 0 }
+                                        { false, false, false },
+                                        { true, false, true }, // -
+                                        { false, false, false }
                         },
                         {
-                                        { 0, 1, 0 },
-                                        { 0, 0, 0 }, // |
-                                        { 0, 1, 0 }
+                                        { false, true, false },
+                                        { false, false, false }, // |
+                                        { false, true, false}
                         },
                         {
-                                        { 1, 0, 0 },
-                                        { 0, 0, 0 }, // \
-                                        { 0, 0, 1 }
+                                        { true, false, true },
+                                        { false, false, false }, // \
+                                        { false, false, true }
                         },
                         {
-                                        { 0, 0, 1 },
-                                        { 0, 0, 0 }, // /
-                                        { 1, 0, 0 }
+                                        { false, false, true },
+                                        { false, false, false }, // /
+                                        { true, false, false }
                         }
         };
         public static final int[][][] testMatrixPositions = {
@@ -36,4 +36,5 @@ public class Constants {
                         }
 
         };
+
 }
