@@ -1,5 +1,5 @@
 public class Constants {
-        public static final Integer[][][] testMatrixes = {
+        public static final int[][][] testMatrixes = {
                         {
                                         { 0, 0, 0 },
                                         { 1, 0, 1 }, // -
@@ -21,7 +21,7 @@ public class Constants {
                                         { 1, 0, 0 }
                         }
         };
-        public static final Integer[][][] testMatrixPositions = {
+        public static final int[][][] testMatrixPositions = {
                         {
                                         { 0, -1 }, { 0, 1 }
                         },
