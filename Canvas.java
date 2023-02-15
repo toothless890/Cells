@@ -12,7 +12,7 @@ public class Canvas {
         this.plannedCells = new Cell[this.height][this.width];
     }
 
-    public Cell getCell(Integer[] pos) {
+    public Cell getCell(int[] pos) {
         Cell cell = this.cells[pos[0]][pos[1]];
         return cell;
     }
@@ -21,18 +21,24 @@ public class Canvas {
         return cells;
     }
 
-    public void removeCell(Integer[] pos) {
+    public void removeCell(int[] pos) {
         this.cells[pos[0]][pos[1]] = null;
     }
 
     public void planCell(Cell cell) {
-        Integer[] pos = cell.getPosition();
+        int[] pos = cell.getPosition();
         this.plannedCells[pos[0]][pos[1]] = cell;
+    }
+
+    public void planCell(Cell cell, int[] pos) {
+        this.plannedCells[pos[0]][pos[1]] = cell;
+        // int[] oldpos = cell.getPosition();
+        // this.plannedCells[oldpos[0]][oldpos[0]] = null;
     }
 
     public void addCell(Cell cell) { // should only be used for cell creation, for new cells via replication, and
                                      // movement, use planCell
-        Integer[] pos = cell.getPosition();
+        int[] pos = cell.getPosition();
         this.cells[pos[0]][pos[1]] = cell;
     }
 
